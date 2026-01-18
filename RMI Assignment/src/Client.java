@@ -15,7 +15,7 @@ public class Client {
 
         SwingUtilities.invokeLater(() -> {
             // Replace ApplyLeaveFrame with your actual JFrame class name
-            ApplyLeaveFormGUI frame = new ApplyLeaveFormGUI(loggedInEmployeeId, service);
+            ViewLeavesGUI frame = new ViewLeavesGUI(loggedInEmployeeId, service);
             frame.setVisible(true);
         });
      }

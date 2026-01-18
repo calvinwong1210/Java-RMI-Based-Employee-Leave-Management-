@@ -53,7 +53,7 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
                 String line = String.join(";",
                         nextLeaveId,
                         employeeId,
-                        description.replace(";", ","), // avoid breaking format
+                        description.replace(";", ",").replace("\r", " ").replace("\n", " "), // avoid breaking format
                         startDate,
                         endDate,
                         status
@@ -117,4 +117,34 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
         return String.format("L%03d", nextNum);
     }
     
+    @Override
+    public List<String[]> getAllLeaves() throws RemoteException {
+        List<String[]> rows = new ArrayList<>();
+
+        synchronized (LOCK) {
+            File f = new File(FILE_PATH);
+            if (!f.exists()) {
+                return rows; // no file yet -> return empty
+            }
+
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(FILE_PATH), StandardCharsets.UTF_8))) {
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    line = line.trim();
+                    if (line.isEmpty()) continue;
+
+                    // Format: L001;E001;Desc;17/1/2026;20/1/2026;Waiting
+                    String[] parts = line.split(";", -1);
+                    rows.add(parts);
+                }
+
+            } catch (IOException e) {
+                throw new RemoteException("Failed to read leaves file: " + e.getMessage(), e);
+            }
+        }
+
+        return rows;
+    }
 }

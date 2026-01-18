@@ -6,4 +6,5 @@ public interface Service extends Remote {
     List<String[]> getData() throws RemoteException;
     String applyLeave(String employeeId, String description, String startDate, String endDate)
             throws RemoteException;
+    List<String[]> getAllLeaves() throws RemoteException;
 }
