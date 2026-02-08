@@ -1,12 +1,11 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class Client {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
      try {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
