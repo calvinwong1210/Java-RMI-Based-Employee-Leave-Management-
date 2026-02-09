@@ -5,24 +5,27 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class Client {
+    public static Service service;
 
     public static void main(String[] args) {
      try {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            Service service =
-                    (Service) registry.lookup("Service");
-
-            List<String[]> data = service.getData();
-
-            for (String[] row : data) {
-                for (String col : row) {
-                    System.out.print(col + "\t");
-                }
-                System.out.println();
-            }
-
-        } catch (Exception e) {
+            service =(Service) registry.lookup("Service");
+ SwingUtilities.invokeLater(() -> {
+            // Replace ApplyLeaveFrame with your actual JFrame class name
+            Login start = new Login();
+            start.setVisible(true);
+        });
+     }
+     
+     catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Cannot connect to RMI Server.\nPlease run Server.java first.",
+                    "Connection Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
     }

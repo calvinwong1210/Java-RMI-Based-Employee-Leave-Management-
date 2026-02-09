@@ -162,15 +162,13 @@ public class Login extends javax.swing.JFrame {
 
         if (loginSuccess) {
             // 登录成功，打开对应界面
-            if (department.equalsIgnoreCase("Admin")) {
-                Admin_Main adminMain = new Admin_Main(empID, name, department);
-                adminMain.setVisible(true);
+             Session.setUser(empID, name, department);
+             if (department.equalsIgnoreCase("Admin")) {
+                new Admin_Main().setVisible(true);
             } else if (department.equalsIgnoreCase("HR")) {
-                HR_Main hrMain = new HR_Main(empID, name, department);
-                hrMain.setVisible(true);
+                new HR_Main().setVisible(true);
             } else {
-                Employee_Main empMain = new Employee_Main(empID, name, department);
-                empMain.setVisible(true);
+                new Employee_Main().setVisible(true);
             }
             this.dispose();
         } else {

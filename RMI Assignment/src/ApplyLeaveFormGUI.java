@@ -14,13 +14,9 @@ import javax.swing.SwingUtilities;
  * @author Owner
  */
 public class ApplyLeaveFormGUI extends javax.swing.JFrame {
-    private final String employeeId;
-    private final Service service;
     
-    public ApplyLeaveFormGUI(String employeeId,Service service) {
+    public ApplyLeaveFormGUI() {
         initComponents();
-        this.employeeId = employeeId;
-        this.service = service;
     }
 
     /**
@@ -149,6 +145,7 @@ public class ApplyLeaveFormGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String employeeId = Session.getEmployeeId();
         String start = jTextField2.getText().trim();
         String end = jTextField3.getText().trim();
         String desc = jTextArea1.getText().trim();
@@ -161,7 +158,7 @@ public class ApplyLeaveFormGUI extends javax.swing.JFrame {
         jButton1.setEnabled(false);
         new Thread(() -> {
             try {
-                String leaveId = service.applyLeave(
+                String leaveId = Client.service.applyLeave(
                         employeeId,
                         desc,
                         start,
@@ -202,7 +199,8 @@ public class ApplyLeaveFormGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    this.dispose();
+    new Employee_Main().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

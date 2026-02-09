@@ -7,29 +7,12 @@ import java.util.*;
 
 public class ServiceImplement extends UnicastRemoteObject implements Service {
 
-    private static final String FILE_PATH = "Test.txt";
+    private static final String FILE_PATH = "Leaves.txt";
     private static final Object LOCK = new Object();
 
 
     public ServiceImplement() throws RemoteException {
         super();
-    }
-
-    @Override
-    public List<String[]> getData() throws RemoteException {
-        List<String[]> rows = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                rows.add(line.split(","));
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading file:");
-            e.printStackTrace();
-        }
-
-        return rows;
     }
     
     @Override
@@ -175,8 +158,8 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
                 if (parts.length < 1) continue;
 
                 String id = parts[0].trim();
-                if (id.matches("L\\d{3}")) {
-                    lastId = id;
+                if (id.matches("L\\d{4}")) {
+                   lastId = id;
                 }
             }
         }
@@ -186,7 +169,7 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
             nextNum = Integer.parseInt(lastId.substring(1)) + 1;
         }
 
-        return String.format("L%03d", nextNum);
+        return String.format("L%04d", nextNum);
     }
     
     @Override

@@ -14,15 +14,11 @@ public class Admin_Main extends javax.swing.JFrame {
      */
     public Admin_Main() {
         initComponents();
+        empIDLabel.setText(Session.getEmployeeId());
+        nameLabel.setText(Session.getName());
+        deptLabel.setText(Session.getDepartment());
     }
 
-    public Admin_Main(String empID, String name, String dept) {
-        initComponents();
-        empIDLabel.setText(empID);
-        nameLabel.setText(name);
-        deptLabel.setText(dept);
-    }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.

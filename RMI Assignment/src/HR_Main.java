@@ -14,14 +14,11 @@ public class HR_Main extends javax.swing.JFrame {
      */
     public HR_Main() {
         initComponents();
+        empIDLabel.setText(Session.getEmployeeId());
+        nameLabel.setText(Session.getName());
+        deptLabel.setText(Session.getDepartment());
     }
     
-    public HR_Main(String empID, String name, String dept) {
-        initComponents();
-        empIDLabel.setText(empID);
-        nameLabel.setText(name);
-        deptLabel.setText(dept);
-    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +65,11 @@ public class HR_Main extends javax.swing.JFrame {
         PayrollManagementButton.setText("Payroll Management");
 
         RegisterButton.setText("Register");
+        RegisterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegisterButtonActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("View Clock In");
 
@@ -125,6 +127,12 @@ public class HR_Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
+        Register registerPage = new Register();
+        registerPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegisterButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -8,21 +8,13 @@
  * @author yu zi guan
  */
 public class Employee_Main extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Employee_Main
-     */
-    public Employee_Main() {
-        initComponents();
-    }
     
-    public Employee_Main(String empID, String name, String dept) {
+     public Employee_Main() {
         initComponents();
-        empIDLabel.setText(empID);
-        nameLabel.setText(name);
-        deptLabel.setText(dept);
+       empIDLabel.setText(Session.getEmployeeId());
+        nameLabel.setText(Session.getName());
+        deptLabel.setText(Session.getDepartment());
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,7 +124,9 @@ public class Employee_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_ClockInButtonActionPerformed
 
     private void ApplyLeaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyLeaveButtonActionPerformed
-        // TODO add your handling code here:
+    ApplyLeaveFormGUI leave = new ApplyLeaveFormGUI();
+    leave.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_ApplyLeaveButtonActionPerformed
 
     /**
@@ -165,7 +159,7 @@ public class Employee_Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Employee_Main().setVisible(true);
+                new Employee_Main ().setVisible(true);
             }
         });
     }
