@@ -2,9 +2,12 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 import javax.swing.*;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /*
@@ -286,7 +289,13 @@ public class Register extends javax.swing.JFrame {
     }
 
     // 5. 保存到服务器
-    saveToServer(name, ic, gender, dob, dept, email, password);
+    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+    String dobStr = sdf.format(dob);
+        try {
+            Client.service.registerEmployee(name, ic, gender, dobStr, dept, email, password);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     // 6. 提示
     JOptionPane.showMessageDialog(this, "Employee registered successfully!");
@@ -309,25 +318,7 @@ public class Register extends javax.swing.JFrame {
     private void DepartmentComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartmentComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DepartmentComboBoxActionPerformed
-    
-    private void saveToServer(String name, String ic, String gender, Date dob, 
-                              String dept, String email, String password){
-        try {
-            java.rmi.registry.Registry registry = java.rmi.registry.LocateRegistry.getRegistry("localhost", 1099);
-            Service service = (Service) registry.lookup("Service");
 
-            // 将日期转换为字符串格式
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-            String dobStr = sdf.format(dob);
-
-            // 调用 RMI 方法
-            service.registerEmployee(name, ic, gender, dobStr, dept, email, password);
-
-        } catch (Exception e){
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error saving to Server.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
     
     /**
      * @param args the command line arguments
