@@ -1,12 +1,15 @@
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.RemoteException;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ServiceImplement extends UnicastRemoteObject implements Service {
 
     private static final String FILE_PATH = "Test.txt";
+    private static final Object LOCK = new Object();
+
 
     public ServiceImplement() throws RemoteException {
         super();
