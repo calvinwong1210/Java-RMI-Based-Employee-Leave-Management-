@@ -16,12 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewLeavesGUI extends javax.swing.JFrame {
     
-    private final Service service;
-    private final String employeeId;
-    
-    public ViewLeavesGUI(String employeeId, Service service) {
-        this.employeeId = employeeId;
-        this.service = service;
+    public ViewLeavesGUI() {
         initComponents();
         model = (DefaultTableModel) jTable1.getModel();
         loadLeavesImmediately();
@@ -93,7 +88,7 @@ private void loadLeavesImmediately() {
 
     new Thread(() -> {
         try {
-            List<String[]> rows = service.getAllLeaves();
+            List<String[]> rows = Client.service.getAllLeaves();
 
             SwingUtilities.invokeLater(() -> {
                 for (String[] r : rows) {

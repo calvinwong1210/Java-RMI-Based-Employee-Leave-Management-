@@ -66,24 +66,6 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
         return sdf.format(new java.util.Date());
     }
     
-    private boolean isDuplicate(String ic, String email) {
-        try (BufferedReader br = new BufferedReader(new FileReader("employees.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(";");
-                String existingIC = data[2];
-                String existingEmail = data[6];
-
-                if (existingIC.equals(ic) || existingEmail.equals(email)) {
-                    return true;
-                }
-            }
-        } catch (IOException e) {
-            // file first time empty
-        }
-        return false;
-    }
-
     @Override
     public String applyLeave(String employeeId, String description, String startDate, String endDate)
             throws RemoteException {
