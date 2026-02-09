@@ -199,8 +199,28 @@ public class ApplyLeaveFormGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    this.dispose();
-    new Employee_Main().setVisible(true);
+
+    String role = Session.getDepartment();
+
+        switch (role) {
+            case "EMPLOYEE":
+                new Employee_Main().setVisible(true);
+                break;
+
+            case "HR":
+                new HR_Main().setVisible(true);
+                break;
+
+            case "ADMIN":
+                new Admin_Main().setVisible(true);
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(this, "Unknown user role");
+                return;
+        }
+
+        this.dispose(); // close ApplyLeave GUI
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

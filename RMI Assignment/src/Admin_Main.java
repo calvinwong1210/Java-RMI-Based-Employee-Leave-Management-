@@ -190,7 +190,9 @@ public class Admin_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_ClockInButtonActionPerformed
 
     private void ApplyLeaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyLeaveButtonActionPerformed
-        // TODO add your handling code here:
+    ApplyLeaveFormGUI leave = new ApplyLeaveFormGUI();
+    leave.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_ApplyLeaveButtonActionPerformed
 
     private void LeaveBalanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveBalanceButtonActionPerformed
