@@ -196,7 +196,8 @@ public class Admin_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_ApplyLeaveButtonActionPerformed
 
     private void LeaveBalanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveBalanceButtonActionPerformed
-        // TODO add your handling code here:
+     new ViewLeavesGUI().setVisible(true);
+     this.dispose();
     }//GEN-LAST:event_LeaveBalanceButtonActionPerformed
 
     private void PayrollManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayrollManagementButtonActionPerformed

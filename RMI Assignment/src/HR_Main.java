@@ -41,6 +41,7 @@ public class HR_Main extends javax.swing.JFrame {
         PayrollManagementButton = new javax.swing.JButton();
         RegisterButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        ApplyLeave = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -59,6 +60,11 @@ public class HR_Main extends javax.swing.JFrame {
         ClockInButton.setText("Clock In");
 
         LeaveBalanceButton.setText("Leave Balance");
+        LeaveBalanceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LeaveBalanceButtonActionPerformed(evt);
+            }
+        });
 
         LeaveManagementButton.setText("Leave Management");
 
@@ -73,31 +79,40 @@ public class HR_Main extends javax.swing.JFrame {
 
         jButton2.setText("View Clock In");
 
+        ApplyLeave.setText("Apply Leave");
+        ApplyLeave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApplyLeaveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(131, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(empIDLabel)
-                            .addComponent(deptLabel))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(LeaveManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(PayrollManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ClockInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(129, 129, 129))))
+                    .addComponent(ApplyLeave, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(94, 94, 94)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(empIDLabel)
+                                .addComponent(deptLabel))
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(RegisterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(LeaveManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(PayrollManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ClockInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(129, 129, 129)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,11 +129,13 @@ public class HR_Main extends javax.swing.JFrame {
                 .addComponent(ClockInButton)
                 .addGap(14, 14, 14)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(RegisterButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ApplyLeave)
+                .addGap(9, 9, 9)
                 .addComponent(LeaveBalanceButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LeaveManagementButton)
                 .addGap(18, 18, 18)
                 .addComponent(PayrollManagementButton)
@@ -133,6 +150,17 @@ public class HR_Main extends javax.swing.JFrame {
         registerPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RegisterButtonActionPerformed
+
+    private void LeaveBalanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveBalanceButtonActionPerformed
+       new ViewLeavesGUI().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_LeaveBalanceButtonActionPerformed
+
+    private void ApplyLeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyLeaveActionPerformed
+     ApplyLeaveFormGUI leave = new ApplyLeaveFormGUI();
+    leave.setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_ApplyLeaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +198,7 @@ public class HR_Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ApplyLeave;
     private javax.swing.JButton ClockInButton;
     private javax.swing.JButton LeaveBalanceButton;
     private javax.swing.JButton LeaveManagementButton;

@@ -81,15 +81,34 @@ public class ViewLeavesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+   String role = Session.getDepartment();
+
+        switch (role) {
+            case "EMPLOYEE":
+                new Employee_Main().setVisible(true);
+                break;
+
+            case "HR":
+                new HR_Main().setVisible(true);
+                break;
+
+            case "ADMIN":
+                new Admin_Main().setVisible(true);
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(this, "Unknown user role");
+                return;
+        }
+
+        this.dispose(); // close ApplyLeave GUI
     }//GEN-LAST:event_jButton1ActionPerformed
 private void loadLeavesImmediately() {
        model.setRowCount(0); // clear table
 
     new Thread(() -> {
         try {
-            List<String[]> rows = Client.service.getAllLeaves();
-
+            List<String[]> rows = Client.service.getLeavesByEmployee(Session.getEmployeeId());
             SwingUtilities.invokeLater(() -> {
                 for (String[] r : rows) {
                     model.addRow(new Object[]{
@@ -105,11 +124,6 @@ private void loadLeavesImmediately() {
             );
         }
     }).start();
-    }
-
-    private String safe(String[] arr, int idx) {
-        if (arr == null || idx < 0 || idx >= arr.length || arr[idx] == null) return "";
-        return arr[idx];
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

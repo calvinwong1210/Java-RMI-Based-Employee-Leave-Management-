@@ -52,6 +52,11 @@ public class Employee_Main extends javax.swing.JFrame {
         });
 
         LeaveBalanceButton.setText("Leave Balance");
+        LeaveBalanceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LeaveBalanceButtonActionPerformed(evt);
+            }
+        });
 
         YearlySummaryReportButton.setText("Yearly Summary Report");
 
@@ -128,6 +133,11 @@ public class Employee_Main extends javax.swing.JFrame {
     leave.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_ApplyLeaveButtonActionPerformed
+
+    private void LeaveBalanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveBalanceButtonActionPerformed
+     new ViewLeavesGUI().setVisible(true);
+     this.dispose();
+    }//GEN-LAST:event_LeaveBalanceButtonActionPerformed
 
     /**
      * @param args the command line arguments

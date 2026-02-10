@@ -45,7 +45,6 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
     }
 
 
-
     private String generateEmployeeID() {
         int count = 0;
 
@@ -154,34 +153,33 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
         return String.format("L%04d", nextNum);
     }
     
+    
     @Override
-    public List<String[]> getAllLeaves() throws RemoteException {
-        List<String[]> rows = new ArrayList<>();
+    public List<String[]> getLeavesByEmployee(String empId) throws RemoteException {
+    List<String[]> rows = new ArrayList<>();
 
-        synchronized (LOCK) {
-            File f = new File(FILE_PATH);
-            if (!f.exists()) {
-                return rows; // no file yet -> return empty
-            }
+    try (BufferedReader br = new BufferedReader(new FileReader("leaves.txt"))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
 
-            try (BufferedReader br = new BufferedReader(
-                    new InputStreamReader(new FileInputStream(FILE_PATH), StandardCharsets.UTF_8))) {
+            String[] parts = line.split(";");
+            // Expected: leaveId;empId;type;start;end;status
+            if (parts.length < 6) continue;
 
-                String line;
-                while ((line = br.readLine()) != null) {
-                    line = line.trim();
-                    if (line.isEmpty()) continue;
-
-                    // Format: L001;E001;Desc;17/1/2026;20/1/2026;Waiting
-                    String[] parts = line.split(";", -1);
-                    rows.add(parts);
-                }
-
-            } catch (IOException e) {
-                throw new RemoteException("Failed to read leaves file: " + e.getMessage(), e);
+            if (empId.equals(parts[1].trim())) {
+                rows.add(new String[]{
+                    parts[0].trim(), parts[1].trim(), parts[2].trim(),
+                    parts[3].trim(), parts[4].trim(), parts[5].trim()
+                });
             }
         }
-
-        return rows;
+    } catch (IOException e) {
+        throw new RemoteException("File read error: " + e.getMessage(), e);
     }
+
+    return rows;
 }
+}
+
