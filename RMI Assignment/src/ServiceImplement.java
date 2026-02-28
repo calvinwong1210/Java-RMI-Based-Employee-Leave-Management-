@@ -181,5 +181,306 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
 
     return rows;
 }
+    
+    //PayrollManagement_Add
+    @Override    
+    public boolean isEmployeeExist(String empID) throws RemoteException {
+        try (BufferedReader br = new BufferedReader(new FileReader("employees.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                if (data[0].equals(empID)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            throw new RemoteException("Error reading employee file", e);
+        }
+        return false;
+    }
+    
+    @Override
+    public boolean isPayrollExist(String empID) throws RemoteException {
+        try (BufferedReader br = new BufferedReader(new FileReader("payroll.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                if (data[0].equals(empID)) {
+                    return true;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            return false; 
+        } catch (IOException e) {
+            throw new RemoteException("Error reading payroll file", e);
+        }
+        return false;
+    }
+
+    @Override
+    public void addPayroll(String empID, double basic, double allowance, double ot,
+                           double deduction, double total) throws RemoteException {
+        if (!isEmployeeExist(empID)) {
+            throw new RemoteException("Employee ID not found!");
+        }
+        if (isPayrollExist(empID)) {
+            throw new RemoteException("Payroll already exists for this employee!");
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("payroll.txt", true))) {
+            bw.write(empID + ";" + basic + ";" + allowance + ";" + ot + ";" + deduction + ";" + total);
+            bw.newLine();
+        } catch (IOException e) {
+            throw new RemoteException("Error saving payroll", e);
+        }
+    }
+ 
+    //PayrollManagement_Edit
+    @Override
+    public String[] getPayroll(String empID) throws RemoteException {
+        try (BufferedReader br = new BufferedReader(new FileReader("payroll.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                if (data[0].equals(empID)) {
+                    return data; // [empID, basic, allowance, ot, deduction, total]
+                }
+            }
+        } catch (IOException e) {
+            throw new RemoteException("Error reading payroll file", e);
+        }
+        return null; 
+    }
+
+    @Override
+    public void updatePayroll(String empID, double basic, double allowance, double ot, double deduction, double total) throws RemoteException {
+        File inputFile = new File("payroll.txt");
+        File tempFile = new File("temp_payroll.txt");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            boolean found = false;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                if (data[0].equals(empID)) {
+                    line = empID + ";" + basic + ";" + allowance + ";" + ot + ";" + deduction + ";" + total;
+                    found = true;
+                }
+                bw.write(line);
+                bw.newLine();
+            }
+
+            if (!found) {
+                throw new RemoteException("Employee ID not found!");
+            }
+
+        } catch (IOException e) {
+            throw new RemoteException("Error updating payroll file", e);
+        }
+
+        inputFile.delete();
+        tempFile.renameTo(inputFile);
+    }
+
+    @Override
+    public void deletePayroll(String empID) throws RemoteException {
+        File inputFile = new File("payroll.txt");
+        File tempFile = new File("temp_payroll.txt");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            boolean found = false;
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                if (!data[0].equals(empID)) {
+                    bw.write(line);
+                    bw.newLine();
+                } else {
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                throw new RemoteException("Employee ID not found!");
+            }
+
+        } catch (IOException e) {
+            throw new RemoteException("Error deleting payroll file", e);
+        }
+
+        inputFile.delete();
+        tempFile.renameTo(inputFile);
+    }
+
+    // PayrollManagement_UpdateSalary
+    @Override
+    public String[] getSalaryStatus(String empID, String month, int year) throws RemoteException {
+        File file = new File("payroll_status.txt");
+        if (!file.exists()) {
+            return null;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                if (data.length >= 5 &&
+                    data[0].equals(empID) &&
+                    data[2].equals(month) &&
+                    data[4].equals(String.valueOf(year))) {
+                    return data;  // [empID, salary, month, status, year]
+                }
+            }
+        } catch (IOException e) {
+            throw new RemoteException("Error reading payroll_status file", e);
+        }
+        return null;
+    }
+
+    @Override
+    public void saveSalaryStatus(String empID, double salary, String month, String status, int year) throws RemoteException {
+        File file = new File("payroll_status.txt");
+        File tempFile = new File("temp_status.txt");
+        boolean recordExists = false;
+        boolean isPaid = false;
+
+        try {
+            if (!file.exists()) {
+                // First record → append directly
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+                    bw.write(empID + ";" + salary + ";" + month + ";" + status + ";" + year);
+                    bw.newLine();
+                }
+                return;
+            }
+
+            try (BufferedReader br = new BufferedReader(new FileReader(file));
+                 BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile))) {
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] data = line.split(";");
+                    if (data.length >= 5 &&
+                        data[0].equals(empID) &&
+                        data[2].equals(month) &&
+                        data[4].equals(String.valueOf(year))) {
+
+                        recordExists = true;
+                        if (data[3].equalsIgnoreCase("Paid")) {
+                            isPaid = true;
+                            bw.write(line);  // keep original if already paid
+                        } else {
+                            // update
+                            bw.write(empID + ";" + salary + ";" + month + ";" + status + ";" + year);
+                        }
+                    } else {
+                        bw.write(line);
+                    }
+                    bw.newLine();
+                }
+
+                // If no matching record → append new one
+                if (!recordExists) {
+                    bw.write(empID + ";" + salary + ";" + month + ";" + status + ";" + year);
+                    bw.newLine();
+                }
+            }
+
+            if (!file.delete() || !tempFile.renameTo(file)) {
+                throw new RemoteException("Failed to replace payroll_status file");
+            }
+
+            if (isPaid) {
+                throw new RemoteException("This month's salary is already PAID. Status cannot be changed.");
+            }
+
+        } catch (IOException e) {
+            throw new RemoteException("Error saving payroll status", e);
+        }
+    }
+
+    @Override
+    public void deleteSalaryStatus(String empID, String month, int year) throws RemoteException {
+        File file = new File("payroll_status.txt");
+        if (!file.exists()) {
+            throw new RemoteException("No payroll status records exist");
+        }
+
+        File tempFile = new File("temp_status.txt");
+        boolean found = false;
+        boolean isPaid = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                if (data.length >= 5 &&
+                    data[0].equals(empID) &&
+                    data[2].equals(month) &&
+                    data[4].equals(String.valueOf(year))) {
+
+                    found = true;
+                    if (data[3].equalsIgnoreCase("Paid")) {
+                        isPaid = true;
+                        bw.write(line);  // cannot delete paid record
+                    }
+                    // else: skip line → effectively delete
+                } else {
+                    bw.write(line);
+                    bw.newLine();
+                }
+            }
+        } catch (IOException e) {
+            throw new RemoteException("Error processing delete operation", e);
+        }
+
+        if (!file.delete() || !tempFile.renameTo(file)) {
+            throw new RemoteException("Failed to replace payroll_status file after delete");
+        }
+
+        if (isPaid) {
+            throw new RemoteException("Cannot delete a record with status PAID");
+        }
+
+        if (!found) {
+            throw new RemoteException("No matching record found for deletion");
+        }
+    }
+
+    //PayrollManagement_ViewSalary
+    @Override
+    public List<String[]> getAllSalaryStatusForEmployee(String empID) throws RemoteException {
+        List<String[]> records = new ArrayList<>();
+        File file = new File("payroll_status.txt");
+
+        if (!file.exists()) {
+            return records; // empty list if no file
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                if (data.length >= 5 && data[0].equals(empID)) {
+                    // Return: [empID, salary, month, status, year]
+                    records.add(new String[]{
+                        data[0], data[1], data[2], data[4], data[3]
+                    });
+                }
+            }
+        } catch (IOException e) {
+            throw new RemoteException("Error reading payroll_status.txt", e);
+        }
+
+        return records;
+    }
 }
 

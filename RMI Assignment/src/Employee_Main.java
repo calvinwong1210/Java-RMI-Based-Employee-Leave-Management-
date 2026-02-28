@@ -61,6 +61,11 @@ public class Employee_Main extends javax.swing.JFrame {
         YearlySummaryReportButton.setText("Yearly Summary Report");
 
         ViewSalaryButton.setText("View Salary");
+        ViewSalaryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewSalaryButtonActionPerformed(evt);
+            }
+        });
 
         ApplyLeaveButton.setText("Apply Leave");
         ApplyLeaveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +143,13 @@ public class Employee_Main extends javax.swing.JFrame {
      new ViewLeavesGUI().setVisible(true);
      this.dispose();
     }//GEN-LAST:event_LeaveBalanceButtonActionPerformed
+
+    private void ViewSalaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSalaryButtonActionPerformed
+        ViewSalary view_salary = new ViewSalary();
+        view_salary.setVisible(true);
+
+        this.dispose(); 
+    }//GEN-LAST:event_ViewSalaryButtonActionPerformed
 
     /**
      * @param args the command line arguments
