@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -68,6 +71,11 @@ public class HR_Main extends javax.swing.JFrame {
         });
 
         LeaveManagementButton.setText("Leave Management");
+        LeaveManagementButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LeaveManagementButtonActionPerformed(evt);
+            }
+        });
 
         PayrollManagementButton.setText("Payroll Management");
         PayrollManagementButton.addActionListener(new java.awt.event.ActionListener() {
@@ -119,9 +127,8 @@ public class HR_Main extends javax.swing.JFrame {
                             .addComponent(PayrollManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ApplyLeave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(RegisterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(LeaveManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(LeaveManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ClockInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(view_salary_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -154,7 +161,7 @@ public class HR_Main extends javax.swing.JFrame {
                 .addComponent(PayrollManagementButton)
                 .addGap(18, 18, 18)
                 .addComponent(view_salary_button)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -167,7 +174,28 @@ public class HR_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void LeaveBalanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveBalanceButtonActionPerformed
-       new ViewLeavesGUI().setVisible(true);
+String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
+
+    if (input == null) {
+        return; // user pressed Cancel
+    }
+
+    input = input.trim();
+
+    if (input.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Year cannot be empty.");
+        return;
+    }
+
+    int year;
+    try {
+        year = Integer.parseInt(input);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Please enter a valid year.");
+        return;
+    }
+
+    new ViewLeavesGUI(year).setVisible(true);
        this.dispose();
     }//GEN-LAST:event_LeaveBalanceButtonActionPerformed
 
@@ -190,6 +218,10 @@ public class HR_Main extends javax.swing.JFrame {
 
         this.dispose(); 
     }//GEN-LAST:event_view_salary_buttonActionPerformed
+
+    private void LeaveManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveManagementButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LeaveManagementButtonActionPerformed
 
     /**
      * @param args the command line arguments

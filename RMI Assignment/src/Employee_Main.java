@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -140,8 +143,29 @@ public class Employee_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_ApplyLeaveButtonActionPerformed
 
     private void LeaveBalanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveBalanceButtonActionPerformed
-     new ViewLeavesGUI().setVisible(true);
-     this.dispose();
+    String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
+
+    if (input == null) {
+        return; // user pressed Cancel
+    }
+
+    input = input.trim();
+
+    if (input.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Year cannot be empty.");
+        return;
+    }
+
+    int year;
+    try {
+        year = Integer.parseInt(input);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Please enter a valid year.");
+        return;
+    }
+
+    new ViewLeavesGUI(year).setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_LeaveBalanceButtonActionPerformed
 
     private void ViewSalaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSalaryButtonActionPerformed

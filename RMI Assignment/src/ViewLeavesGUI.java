@@ -15,10 +15,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Owner
  */
 public class ViewLeavesGUI extends javax.swing.JFrame {
-    
-    public ViewLeavesGUI() {
+    private final int selectedyear;
+    public ViewLeavesGUI(int year) {
         initComponents();
         model = (DefaultTableModel) jTable1.getModel();
+        this.selectedyear = year;
         loadLeavesImmediately();
     }
 
@@ -34,6 +35,7 @@ public class ViewLeavesGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +56,8 @@ public class ViewLeavesGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Leave Balances: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,12 +71,18 @@ public class ViewLeavesGUI extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(124, 124, 124))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(16, 16, 16)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -104,26 +114,23 @@ public class ViewLeavesGUI extends javax.swing.JFrame {
         this.dispose(); // close ApplyLeave GUI
     }//GEN-LAST:event_jButton1ActionPerformed
 private void loadLeavesImmediately() {
-       model.setRowCount(0); // clear table
+       try {
+        String employeeId = Session.getEmployeeId();
 
-    new Thread(() -> {
-        try {
-            List<String[]> rows = Client.service.getLeavesByEmployee(Session.getEmployeeId());
-            SwingUtilities.invokeLater(() -> {
-                for (String[] r : rows) {
-                    model.addRow(new Object[]{
-                        r[0], r[1], r[2], r[3], r[4], r[5]
-                    });
-                }
-            });
+        List<String[]> rows =
+                Client.service.getLeavesByEmployee(employeeId, selectedyear);
+         model.setRowCount(0);
 
-        } catch (Exception e) {
-            SwingUtilities.invokeLater(() ->
-                JOptionPane.showMessageDialog(this,
-                    "Failed to load leaves:\n" + e.getMessage())
-            );
+        for (String[] row : rows) {
+            model.addRow(row);
         }
-    }).start();
+
+        int balance = Client.service.getRemainingLeaveBalance(employeeId, selectedyear);
+        jLabel1.setText("Remaining Leave Balance: " + balance + " / 10");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error loading leave data: " + e.getMessage());
+    }
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -160,6 +167,7 @@ private void loadLeavesImmediately() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

@@ -3,9 +3,13 @@ import java.rmi.RemoteException;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class ServiceImplement extends UnicastRemoteObject implements Service {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
 
     private static final String FILE_PATH = "Leaves.txt";
     private static final Object LOCK = new Object();
@@ -151,11 +155,50 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
         return String.format("L%04d", nextNum);
     }
     
-    
     @Override
-    public List<String[]> getLeavesByEmployee(String empId) throws RemoteException {
-    List<String[]> rows = new ArrayList<>();
+    public int getRemainingLeaveBalance(String employeeId, int year) throws RemoteException {
 
+    int usedDays = 0;
+
+    try (BufferedReader br = new BufferedReader(new FileReader("leaves.txt"))) {
+
+        String line;
+
+        while ((line = br.readLine()) != null) {
+
+            String[] parts = line.split(";");
+
+            String empId = parts[1].trim();
+            String startDateStr = parts[3].trim();
+            String endDateStr = parts[4].trim();
+            String status = parts[5].trim();
+
+            if (!empId.equals(employeeId)) continue;
+
+            if (!status.equalsIgnoreCase("Approved")) continue;
+
+            LocalDate start = LocalDate.parse(startDateStr, formatter);
+            LocalDate end = LocalDate.parse(endDateStr, formatter);
+
+            if (start.getYear() == year) {
+
+                long days = ChronoUnit.DAYS.between(start, end) + 1;
+                usedDays += days;
+
+            }
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    int remaining = 10 - usedDays;
+
+    return Math.max(remaining, 0);
+}
+    @Override
+    public List<String[]> getLeavesByEmployee(String empId,int year) throws RemoteException {
+    List<String[]> rows = new ArrayList<>();
     try (BufferedReader br = new BufferedReader(new FileReader("leaves.txt"))) {
         String line;
         while ((line = br.readLine()) != null) {
@@ -165,8 +208,8 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
             String[] parts = line.split(";");
             // Expected: leaveId;empId;type;start;end;status
             if (parts.length < 6) continue;
-
-            if (empId.equals(parts[1].trim())) {
+            LocalDate startdate = LocalDate.parse(parts[3].trim(), formatter);
+            if (empId.equals(parts[1].trim()) && startdate.getYear() == year ) {
                 rows.add(new String[]{
                     parts[0].trim(), parts[1].trim(), parts[2].trim(),
                     parts[3].trim(), parts[4].trim(), parts[5].trim()

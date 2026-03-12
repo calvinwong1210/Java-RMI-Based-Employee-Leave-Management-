@@ -5,12 +5,13 @@ import java.util.List;
 public interface Service extends Remote {
     String applyLeave(String employeeId, String description, String startDate, String endDate)
             throws RemoteException;
-    List<String[]> getLeavesByEmployee(String empId) throws RemoteException;
+    List<String[]> getLeavesByEmployee(String empId,int year) throws RemoteException;
     void registerEmployee(String name, String ic, String gender,
                           String dob, String dept, String email,
                           String password,
                           String phone, String familyName,
                           String relationship, String familyPhone) throws RemoteException;
+    int getRemainingLeaveBalance(String employeeId, int year) throws RemoteException;
     
     //PayrollManagement_Add
     void addPayroll(String empID, double basic, double allowance, double ot, double deduction, double total) 
