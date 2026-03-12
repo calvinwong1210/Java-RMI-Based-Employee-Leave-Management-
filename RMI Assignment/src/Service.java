@@ -12,6 +12,23 @@ public interface Service extends Remote {
                           String phone, String familyName,
                           String relationship, String familyPhone,
                           int leaveBalance) throws RemoteException;
+}
+
+
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
+
+public interface Service extends Remote {
+    String applyLeave(String employeeId, String description, String startDate, String endDate)
+            throws RemoteException;
+    List<String[]> getLeavesByEmployee(String empId) throws RemoteException;
+    void registerEmployee(String name, String ic, String gender,
+                          String dob, String dept,
+                          String email, String password)
+            throws RemoteException;
+    
     //PayrollManagement_Add
     void addPayroll(String empID, double basic, double allowance, double ot, double deduction, double total) 
          throws RemoteException;
