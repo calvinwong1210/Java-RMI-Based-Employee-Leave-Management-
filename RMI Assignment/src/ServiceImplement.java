@@ -14,14 +14,13 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
     public ServiceImplement() throws RemoteException {
         super();
     }
-    
+   
     @Override
     public void registerEmployee(String name, String ic, String gender,
                                  String dob, String dept,
                                  String email, String password,
                                  String phone, String familyName,
-                                 String relationship, String familyPhone,
-                                 int leaveBalance)
+                                 String relationship, String familyPhone)
                                  throws RemoteException {
 
         String empID = generateEmployeeID();   // 自动生成
@@ -34,8 +33,7 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
                     gender + ";" + dob + ";" + dept + ";" +
                     email + ";" + password + ";" +
                     phone + ";" + familyName + ";" +
-                    relationship + ";" + familyPhone + ";" +
-                    leaveBalance);
+                    relationship + ";" + familyPhone);
 
             bw.newLine();
 

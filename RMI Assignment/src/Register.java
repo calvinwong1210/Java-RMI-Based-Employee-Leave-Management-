@@ -340,7 +340,6 @@ public class Register extends javax.swing.JFrame {
     String familyName = Family_NameTextField.getText().trim();
     String relationship = RelationshipComboBox.getSelectedItem().toString();
     String familyPhone = Family_Phone_NumberTextField.getText().trim();
-    int leaveBalance = 10;
     
     // 2. 检查重复
     if (isDuplicate(ic, email)) {
@@ -364,7 +363,7 @@ public class Register extends javax.swing.JFrame {
     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
     String dobStr = sdf.format(dob);
         try {
-            Client.service.registerEmployee(name, ic, gender, dobStr, dept, email, password, phone, familyName, relationship, familyPhone, leaveBalance);
+            Client.service.registerEmployee(name, ic, gender, dobStr, dept, email, password, phone, familyName, relationship, familyPhone);
         } catch (RemoteException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -10,8 +10,7 @@ public interface Service extends Remote {
                           String dob, String dept, String email,
                           String password,
                           String phone, String familyName,
-                          String relationship, String familyPhone,
-                          int leaveBalance) throws RemoteException;
+                          String relationship, String familyPhone) throws RemoteException;
     
     //PayrollManagement_Add
     void addPayroll(String empID, double basic, double allowance, double ot, double deduction, double total) 
