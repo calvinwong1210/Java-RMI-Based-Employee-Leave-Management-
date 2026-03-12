@@ -16,3 +16,4 @@ E0009;2.0;January;Paid;2026
 E0001;2333.0;February;Unpaid;2026
 E0006;1255.0;January;Paid;2026
 E0001;2222.0;January;Paid;2026
+E0001;2272.0;October;Paid;2026
