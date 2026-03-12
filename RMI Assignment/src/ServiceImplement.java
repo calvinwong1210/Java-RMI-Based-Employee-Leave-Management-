@@ -18,8 +18,11 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
     @Override
     public void registerEmployee(String name, String ic, String gender,
                                  String dob, String dept,
-                                 String email, String password)
-            throws RemoteException {
+                                 String email, String password,
+                                 String phone, String familyName,
+                                 String relationship, String familyPhone,
+                                 int leaveBalance)
+                                 throws RemoteException {
 
         String empID = generateEmployeeID();   // 自动生成
         String joinDate = getTodayDate();     // 自动今天
@@ -27,15 +30,12 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
         try (BufferedWriter bw =
              new BufferedWriter(new FileWriter("employees.txt", true))) {
 
-            bw.write(empID + ";" +
-                     name + ";" +
-                     ic + ";" +
-                     gender + ";" +
-                     dob + ";" +
-                     dept + ";" +
-                     email + ";" +
-                     password + ";" +
-                     joinDate);
+            bw.write(empID + ";" + name + ";" + ic + ";" +
+                    gender + ";" + dob + ";" + dept + ";" +
+                    email + ";" + password + ";" +
+                    phone + ";" + familyName + ";" +
+                    relationship + ";" + familyPhone + ";" +
+                    leaveBalance);
 
             bw.newLine();
 

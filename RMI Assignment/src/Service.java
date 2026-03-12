@@ -7,9 +7,11 @@ public interface Service extends Remote {
             throws RemoteException;
     List<String[]> getLeavesByEmployee(String empId) throws RemoteException;
     void registerEmployee(String name, String ic, String gender,
-                          String dob, String dept,
-                          String email, String password)
-            throws RemoteException;
+                          String dob, String dept, String email,
+                          String password,
+                          String phone, String familyName,
+                          String relationship, String familyPhone,
+                          int leaveBalance) throws RemoteException;
 }
 
 

@@ -65,6 +65,14 @@ public class Register extends javax.swing.JFrame {
         DoBSpinner = new javax.swing.JSpinner(
             new javax.swing.SpinnerDateModel()
         );
+        RelationshipComboBox = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        Phone_NumberTextField = new javax.swing.JTextField();
+        Family_Phone_NumberTextField = new javax.swing.JTextField();
+        Family_NameTextField = new javax.swing.JTextField();
         DepartmentComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,6 +135,39 @@ public class Register extends javax.swing.JFrame {
         new JSpinner.DateEditor(DoBSpinner, "yyyy-MM-dd");
         DoBSpinner.setEditor(editor);
 
+        RelationshipComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Parents", "Siblings","Husband / Wife" }));
+        RelationshipComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RelationshipComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Phone Number:");
+
+        jLabel10.setText("Family Name:");
+
+        jLabel11.setText("Relationship:");
+
+        jLabel12.setText("Family Phone Number:");
+
+        Phone_NumberTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Phone_NumberTextFieldActionPerformed(evt);
+            }
+        });
+
+        Family_Phone_NumberTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Family_Phone_NumberTextFieldActionPerformed(evt);
+            }
+        });
+
+        Family_NameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Family_NameTextFieldActionPerformed(evt);
+            }
+        });
+
         DepartmentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HR", "Employee" }));
         DepartmentComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,23 +185,32 @@ public class Register extends javax.swing.JFrame {
                         .addGap(162, 162, 162)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(114, 114, 114)
-                                    .addComponent(SubmitButton))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(EmailTextField)
-                                            .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(DepartmentComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(EmailTextField)
+                                                .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(RelationshipComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Phone_NumberTextField)
+                                            .addComponent(Family_Phone_NumberTextField)
+                                            .addComponent(Family_NameTextField)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(DepartmentComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6)
@@ -169,18 +219,20 @@ public class Register extends javax.swing.JFrame {
                                     .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(NameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                    .addComponent(ICTextField)
+                                    .addComponent(NameTextField)
+                                    .addComponent(ICTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(GanderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DoBSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(129, Short.MAX_VALUE))
+                                    .addComponent(DoBSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(SubmitButton)))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -208,9 +260,24 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(SubmitButton)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(Phone_NumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Family_NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(RelationshipComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(Family_Phone_NumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SubmitButton))
         );
 
         pack();
@@ -269,7 +336,12 @@ public class Register extends javax.swing.JFrame {
     String dept = DepartmentComboBox.getSelectedItem().toString();
     String email = EmailTextField.getText().trim();
     String password = PasswordTextField.getText().trim();
-
+    String phone = Phone_NumberTextField.getText().trim();
+    String familyName = Family_NameTextField.getText().trim();
+    String relationship = RelationshipComboBox.getSelectedItem().toString();
+    String familyPhone = Family_Phone_NumberTextField.getText().trim();
+    int leaveBalance = 10;
+    
     // 2. 检查重复
     if (isDuplicate(ic, email)) {
         JOptionPane.showMessageDialog(this, "IC or Email already exists!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -292,7 +364,7 @@ public class Register extends javax.swing.JFrame {
     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
     String dobStr = sdf.format(dob);
         try {
-            Client.service.registerEmployee(name, ic, gender, dobStr, dept, email, password);
+            Client.service.registerEmployee(name, ic, gender, dobStr, dept, email, password, phone, familyName, relationship, familyPhone, leaveBalance);
         } catch (RemoteException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -314,6 +386,22 @@ public class Register extends javax.swing.JFrame {
     private void GanderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GanderComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GanderComboBoxActionPerformed
+
+    private void RelationshipComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelationshipComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RelationshipComboBoxActionPerformed
+
+    private void Phone_NumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Phone_NumberTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Phone_NumberTextFieldActionPerformed
+
+    private void Family_Phone_NumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Family_Phone_NumberTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Family_Phone_NumberTextFieldActionPerformed
+
+    private void Family_NameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Family_NameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Family_NameTextFieldActionPerformed
 
     private void DepartmentComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepartmentComboBoxActionPerformed
         // TODO add your handling code here:
@@ -359,12 +447,19 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> DepartmentComboBox;
     private javax.swing.JSpinner DoBSpinner;
     private javax.swing.JTextField EmailTextField;
+    private javax.swing.JTextField Family_NameTextField;
+    private javax.swing.JTextField Family_Phone_NumberTextField;
     private javax.swing.JComboBox<String> GanderComboBox;
     private javax.swing.JTextField ICTextField;
     private javax.swing.JTextField NameTextField;
     private javax.swing.JTextField PasswordTextField;
+    private javax.swing.JTextField Phone_NumberTextField;
+    private javax.swing.JComboBox<String> RelationshipComboBox;
     private javax.swing.JButton SubmitButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -372,5 +467,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
