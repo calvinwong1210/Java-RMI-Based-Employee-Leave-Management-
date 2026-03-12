@@ -77,6 +77,11 @@ public class Admin_Main extends javax.swing.JFrame {
         YearlySummaryReportButton.setText("Yearly Summary Report");
 
         ViewSalaryButton.setText("View Salary");
+        ViewSalaryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewSalaryButtonActionPerformed(evt);
+            }
+        });
 
         ApplyLeaveButton.setText("Apply Leave");
         ApplyLeaveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +206,10 @@ public class Admin_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_LeaveBalanceButtonActionPerformed
 
     private void PayrollManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayrollManagementButtonActionPerformed
-        // TODO add your handling code here:
+        PayrollManagement Admin = new PayrollManagement();
+        Admin.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_PayrollManagementButtonActionPerformed
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
@@ -215,6 +223,13 @@ public class Admin_Main extends javax.swing.JFrame {
         Register_Admin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RegisterAdminButtonActionPerformed
+
+    private void ViewSalaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSalaryButtonActionPerformed
+        ViewSalary view_salary = new ViewSalary();
+        view_salary.setVisible(true);
+
+        this.dispose(); 
+    }//GEN-LAST:event_ViewSalaryButtonActionPerformed
 
     /**
      * @param args the command line arguments

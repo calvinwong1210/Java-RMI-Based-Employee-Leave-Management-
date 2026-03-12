@@ -38,31 +38,30 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="131" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ApplyLeave" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nameLabel" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="empIDLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="deptLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="nameLabel" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="empIDLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="deptLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="RegisterButton" min="-2" pref="140" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="LeaveManagementButton" max="32767" attributes="0"/>
-                                  <Component id="PayrollManagementButton" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LeaveBalanceButton" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ClockInButton" max="32767" attributes="0"/>
-                                  <Component id="jButton2" min="-2" pref="140" max="-2" attributes="0"/>
-                              </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="PayrollManagementButton" max="32767" attributes="0"/>
+                          <Component id="ApplyLeave" alignment="0" max="32767" attributes="0"/>
+                          <Component id="RegisterButton" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="LeaveManagementButton" max="32767" attributes="0"/>
+                              <Component id="LeaveBalanceButton" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                          <Component id="ClockInButton" max="32767" attributes="0"/>
+                          <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="view_salary_button" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -84,7 +83,7 @@
               <Component id="ClockInButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="RegisterButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="ApplyLeave" min="-2" max="-2" attributes="0"/>
@@ -94,7 +93,9 @@
               <Component id="LeaveManagementButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="PayrollManagementButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="view_salary_button" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="9" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -142,6 +143,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Payroll Management"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PayrollManagementButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="RegisterButton">
       <Properties>
@@ -162,6 +166,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ApplyLeaveActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="view_salary_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Salary"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="view_salary_buttonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
