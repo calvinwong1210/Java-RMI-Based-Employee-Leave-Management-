@@ -1,0 +1,4 @@
+E0001;12;12;Male;2026-02-23;HR;123@12;12;12;12;Parents;12;10
+E0002;2;2;Male;2026-02-23;Admin;2@2;2;2;2;Parents;2;10
+E0003;Test;1234;Male;2026-03-12;Admin;Test@Test;Test123;016;YoYo;Parents;1234;10
+E0004;TestTest;010101;Male;2026-03-12;HR;TestTest@TestTest;123123;09595123;ZZI;Husband / Wife;1234;10
