@@ -13,7 +13,6 @@ import java.util.List;
  * @author yongt
  */
 public class LeaveManagementGUI extends javax.swing.JFrame {
-  private final Service service;
   private DefaultTableModel tableModel;
 
 
@@ -23,8 +22,7 @@ public class LeaveManagementGUI extends javax.swing.JFrame {
     /**
      * Creates new form LeaveManagementGUI
      */
-    public LeaveManagementGUI(Service service) {
-    this.service = service;
+    public LeaveManagementGUI() {
     initComponents();
 
     // Initialize table model
@@ -53,13 +51,13 @@ public class LeaveManagementGUI extends javax.swing.JFrame {
     employee.removeAllItems();
     employee.addItem("All Employees");
 
-    if (service == null) {
+    if (Client.service == null) {
         employee.addItem("(Test mode - no data)");
         return;
     }
 
     try {
-        List<String[]> employees = service.getAllEmployees();
+        List<String[]> employees = Client.service.getAllEmployees();
         for (String[] emp : employees) {
             if (emp.length >= 3) {
                 String id = emp[0].trim();
@@ -80,13 +78,13 @@ public class LeaveManagementGUI extends javax.swing.JFrame {
     employee.removeAllItems();
     employee.addItem("All Employees");
 
-    if (service == null) {
+    if (Client.service == null) {
         employee.addItem("(No connection - test mode)");
         return;
     }
 
     try {
-        List<String[]> employees = service.getAllEmployees();
+        List<String[]> employees = Client.service.getAllEmployees();
         for (String[] emp : employees) {
             if (emp.length >= 3) {
                 String id = emp[0].trim();
@@ -103,13 +101,13 @@ public class LeaveManagementGUI extends javax.swing.JFrame {
     private void loadLeavesToTable() {
     tableModel.setRowCount(0); // clear table
 
-    if (service == null) {
+    if (Client.service == null) {
         tableModel.addRow(new Object[]{"-", "-", "No connection", "-", "-", "-"});
         return;
     }
 
     try {
-        List<String[]> leaves = service.getAllLeaves();
+        List<String[]> leaves = Client.service.getAllLeaves();
 
         String selected = (String) employee.getSelectedItem();
         String filterId = null;
@@ -245,6 +243,25 @@ public void refreshTable() {
     }//GEN-LAST:event_employeeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String role = Session.getDepartment();
+
+        switch (role) {
+            case "Employee":
+                new Employee_Main().setVisible(true);
+                break;
+
+            case "HR":
+                new HR_Main().setVisible(true);
+                break;
+
+            case "Admin":
+                new Admin_Main().setVisible(true);
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(this, "Unknown user role");
+                return;
+        }
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -258,7 +275,7 @@ public void refreshTable() {
     String leaveId = (String) LeavesTable.getValueAt(row, 0);
     
     // Pass 'this' (the LeaveManagementGUI instance) as parent
-    new LeaveDetailForm(service, leaveId, this).setVisible(true);
+    new LeaveDetailForm(leaveId, this).setVisible(true);
     }//GEN-LAST:event_viewdetailActionPerformed
 
     /**
@@ -269,9 +286,7 @@ public void refreshTable() {
  */
 public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(() -> {
-        // Open without real service (test mode)
-        LeaveManagementGUI form = new LeaveManagementGUI(null);
-        form.setVisible(true);
+        // Open without real service (test mode
     });
 }
 

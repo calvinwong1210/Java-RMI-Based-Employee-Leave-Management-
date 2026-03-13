@@ -91,10 +91,10 @@ public class ViewLeavesGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-   String role = Session.getDepartment();
+    String role = Session.getDepartment();
 
         switch (role) {
-            case "EMPLOYEE":
+            case "Employee":
                 new Employee_Main().setVisible(true);
                 break;
 
@@ -102,7 +102,7 @@ public class ViewLeavesGUI extends javax.swing.JFrame {
                 new HR_Main().setVisible(true);
                 break;
 
-            case "ADMIN":
+            case "Admin":
                 new Admin_Main().setVisible(true);
                 break;
 
@@ -110,8 +110,7 @@ public class ViewLeavesGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Unknown user role");
                 return;
         }
-
-        this.dispose(); // close ApplyLeave GUI
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 private void loadLeavesImmediately() {
        try {

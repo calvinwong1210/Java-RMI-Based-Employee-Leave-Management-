@@ -13,13 +13,10 @@ import javax.swing.JOptionPane;
  * @author yongt
  */
 public class LeaveDetailForm extends javax.swing.JFrame {
-
-    private final Service service;
     private final String leaveId;
     private final LeaveManagementGUI parent;
 
-    public LeaveDetailForm(Service service, String leaveId,LeaveManagementGUI parent) {
-        this.service = service;
+    public LeaveDetailForm(String leaveId,LeaveManagementGUI parent) {
         this.leaveId = leaveId;
         this.parent = parent;
         initComponents();
@@ -42,7 +39,7 @@ public class LeaveDetailForm extends javax.swing.JFrame {
     }
 
     private void loadLeaveData() {
-        if (service == null) {
+        if (Client.service == null) {
             JOptionPane.showMessageDialog(this, "No RMI connection (test mode)", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -53,7 +50,7 @@ public class LeaveDetailForm extends javax.swing.JFrame {
         }
 
         try {
-            List<String[]> allLeaves = service.getAllLeaves();  // ← calls server
+            List<String[]> allLeaves = Client.service.getAllLeaves();  // ← calls server
             boolean found = false;
 
             for (String[] leave : allLeaves) {
@@ -71,7 +68,7 @@ public class LeaveDetailForm extends javax.swing.JFrame {
 
                     // Load employee name (optional)
                     try {
-                        String[] emp = service.getEmployeeProfile(leave[1].trim());  // ← calls server
+                        String[] emp = Client.service.getEmployeeProfile(leave[1].trim());  // ← calls server
                         if (emp != null && emp.length >= 3) {
                             String name = (emp[1].trim() + " " + emp[2].trim()).trim();
                             employeename.setText(name.isEmpty() ? "Unknown" : name);
@@ -95,13 +92,13 @@ public class LeaveDetailForm extends javax.swing.JFrame {
     }
 
    private void updateLeaveStatus(String newStatus) {
-    if (service == null) {
+    if (Client.service == null) {
         JOptionPane.showMessageDialog(this, "No RMI connection (test mode)", "Warning", JOptionPane.WARNING_MESSAGE);
         return;  // do NOT close if failed
     }
 
     try {
-        service.updateLeaveStatus(leaveId, newStatus);
+        Client.service.updateLeaveStatus(leaveId, newStatus);
         
         // Update the text field immediately (visual feedback)
         currentstatus.setText(newStatus);

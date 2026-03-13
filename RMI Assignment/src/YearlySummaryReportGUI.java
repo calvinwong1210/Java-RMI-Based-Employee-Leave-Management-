@@ -18,14 +18,10 @@ import java.util.logging.Logger;
  * @author yongt
  */
 public class YearlySummaryReportGUI extends javax.swing.JFrame {
-    
-
-    private final Service service;
     private final String employeeId;
 
-    public YearlySummaryReportGUI(String employeeId, Service service) {
+    public YearlySummaryReportGUI(String employeeId) {
         this.employeeId = employeeId;
-        this.service = service;
         initComponents();
         loadEmployeeList();
         
@@ -41,14 +37,14 @@ public class YearlySummaryReportGUI extends javax.swing.JFrame {
     EmployeeList.removeAllItems();
     EmployeeList.addItem("Select an Employee");
 
-    if (service == null) {
+    if (Client.service == null) {
         EmployeeList.addItem("(RMI service not available - test mode)");
         return;
     }
 
     try {
         // Call the server method to get all employees
-        List<String[]> employees = service.getAllEmployees();
+        List<String[]> employees = Client.service.getAllEmployees();
 
         if (employees == null || employees.isEmpty()) {
             EmployeeList.addItem("No employees found");
@@ -162,11 +158,30 @@ public class YearlySummaryReportGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-       this.dispose();
+     String role = Session.getDepartment();
+
+        switch (role) {
+            case "Employee":
+                new Employee_Main().setVisible(true);
+                break;
+
+            case "HR":
+                new HR_Main().setVisible(true);
+                break;
+
+            case "Admin":
+                new Admin_Main().setVisible(true);
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(this, "Unknown user role");
+                return;
+        }
+        this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
     private void generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateActionPerformed
-if (service == null) {
+if (Client.service == null) {
         ReportTable.setText("RMI service not available (test mode)");
         return;
     }
@@ -203,7 +218,7 @@ if (service == null) {
     String employeeIdSelected = selectedItem.split(" - ")[0].trim();
 
     try {
-        String report = service.getYearlyEmployeeReport(employeeIdSelected, year);
+        String report = Client.service.getYearlyEmployeeReport(employeeIdSelected, year);
         ReportTable.setText(report);
         ReportTable.setCaretPosition(0); // scroll to top
     } catch (RemoteException ex) {
@@ -232,8 +247,6 @@ public static void main(String args[]) {
                 "This form is meant to be opened from Client.java after connecting to the RMI server.\n" +
                 "Running in test mode now (service = null)",
                 "Test Mode", JOptionPane.INFORMATION_MESSAGE);
-
-            new YearlySummaryReportGUI("E0001", null).setVisible(true);
         });
   
 }

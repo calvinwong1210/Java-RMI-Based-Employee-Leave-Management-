@@ -220,7 +220,10 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
     }//GEN-LAST:event_view_salary_buttonActionPerformed
 
     private void LeaveManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveManagementButtonActionPerformed
-        // TODO add your handling code here:
+                        LeaveManagementGUI lm = new LeaveManagementGUI();
+                        lm.setVisible(true);
+                        lm.setLocationRelativeTo(null);
+                         this.dispose(); 
     }//GEN-LAST:event_LeaveManagementButtonActionPerformed
 
     /**

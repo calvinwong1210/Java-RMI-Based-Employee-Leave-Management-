@@ -6,12 +6,15 @@ public interface Service extends Remote {
     String applyLeave(String employeeId, String description, String startDate, String endDate)
             throws RemoteException;
     List<String[]> getLeavesByEmployee(String empId,int year) throws RemoteException;
+    
     void registerEmployee(String name, String ic, String gender,
                           String dob, String dept, String email,
                           String password,
                           String phone, String familyName,
                           String relationship, String familyPhone) throws RemoteException;
+    
     int getAvailableLeaveForApplication(String empId, int year) throws RemoteException;
+    
     //PayrollManagement_Add
     void addPayroll(String empID, double basic, double allowance, double ot, double deduction, double total) 
          throws RemoteException;
@@ -30,26 +33,11 @@ public interface Service extends Remote {
     
     //PayrollManagement_ViewSalary
     List<String[]> getAllSalaryStatusForEmployee(String empID) throws RemoteException;
-}
-
-
-
-import java.io.IOException;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.util.List;
-
-public interface Service extends Remote {
-    List<String[]> getData() throws RemoteException;
-    String applyLeave(String employeeId, String description, String startDate, String endDate)
-            throws RemoteException;
+    
     List<String[]> getAllLeaves() throws RemoteException;
     // Add this to Service.java interface
-String getYearlyEmployeeReport(String employeeId, int year) throws RemoteException, IOException ;
-String[] getEmployeeProfile(String employeeId) throws RemoteException;
-List<String[]> getAllEmployees() throws RemoteException;
-void updateLeaveStatus(String leaveId, String newStatus) throws RemoteException;
-
-
- 
+    String getYearlyEmployeeReport(String employeeId, int year) throws RemoteException;
+    String[] getEmployeeProfile(String employeeId) throws RemoteException;
+    List<String[]> getAllEmployees() throws RemoteException;
+    void updateLeaveStatus(String leaveId, String newStatus) throws RemoteException;
 }

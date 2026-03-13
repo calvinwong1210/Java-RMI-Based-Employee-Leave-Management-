@@ -144,6 +144,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Yearly Summary Report"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="YearlySummaryReportButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ViewSalaryButton">
       <Properties>
@@ -201,6 +204,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Leave Management"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LeaveManagementButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="PayrollManagementButton">
       <Properties>

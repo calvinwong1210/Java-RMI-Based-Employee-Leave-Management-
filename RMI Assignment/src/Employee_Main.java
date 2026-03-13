@@ -62,6 +62,11 @@ public class Employee_Main extends javax.swing.JFrame {
         });
 
         YearlySummaryReportButton.setText("Yearly Summary Report");
+        YearlySummaryReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YearlySummaryReportButtonActionPerformed(evt);
+            }
+        });
 
         ViewSalaryButton.setText("View Salary");
         ViewSalaryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -88,13 +93,12 @@ public class Employee_Main extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(67, 67, 67))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ApplyLeaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(YearlySummaryReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ViewSalaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ClockInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(YearlySummaryReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ViewSalaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ClockInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ApplyLeaveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(43, 43, 43)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,6 +178,13 @@ public class Employee_Main extends javax.swing.JFrame {
 
         this.dispose(); 
     }//GEN-LAST:event_ViewSalaryButtonActionPerformed
+
+    private void YearlySummaryReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YearlySummaryReportButtonActionPerformed
+        YearlySummaryReportGUI report = new YearlySummaryReportGUI(Session.getEmployeeId());
+        report.setVisible(true);
+        report.setLocationRelativeTo(null);
+        this.dispose(); 
+    }//GEN-LAST:event_YearlySummaryReportButtonActionPerformed
 
     /**
      * @param args the command line arguments

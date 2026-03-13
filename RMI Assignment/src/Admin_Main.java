@@ -78,6 +78,11 @@ public class Admin_Main extends javax.swing.JFrame {
         });
 
         YearlySummaryReportButton.setText("Yearly Summary Report");
+        YearlySummaryReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YearlySummaryReportButtonActionPerformed(evt);
+            }
+        });
 
         ViewSalaryButton.setText("View Salary");
         ViewSalaryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +121,11 @@ public class Admin_Main extends javax.swing.JFrame {
         });
 
         LeaveManagementButton.setText("Leave Management");
+        LeaveManagementButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LeaveManagementButtonActionPerformed(evt);
+            }
+        });
 
         PayrollManagementButton.setText("Payroll Management");
         PayrollManagementButton.addActionListener(new java.awt.event.ActionListener() {
@@ -254,6 +264,20 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
 
         this.dispose(); 
     }//GEN-LAST:event_ViewSalaryButtonActionPerformed
+
+    private void LeaveManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveManagementButtonActionPerformed
+        LeaveManagementGUI lm = new LeaveManagementGUI();
+         lm.setVisible(true);
+         lm.setLocationRelativeTo(null);
+          this.dispose(); 
+    }//GEN-LAST:event_LeaveManagementButtonActionPerformed
+
+    private void YearlySummaryReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YearlySummaryReportButtonActionPerformed
+        YearlySummaryReportGUI report = new YearlySummaryReportGUI(Session.getEmployeeId());
+        report.setVisible(true);
+        report.setLocationRelativeTo(null);
+        this.dispose(); 
+    }//GEN-LAST:event_YearlySummaryReportButtonActionPerformed
 
     /**
      * @param args the command line arguments
