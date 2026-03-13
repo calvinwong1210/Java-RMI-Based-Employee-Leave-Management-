@@ -31,7 +31,6 @@ public class Employee_Main extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         deptLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        ClockInButton = new javax.swing.JButton();
         LeaveBalanceButton = new javax.swing.JButton();
         YearlySummaryReportButton = new javax.swing.JButton();
         ViewSalaryButton = new javax.swing.JButton();
@@ -46,13 +45,6 @@ public class Employee_Main extends javax.swing.JFrame {
         deptLabel.setText("Department");
 
         jLabel1.setText("Employee Main Page");
-
-        ClockInButton.setText("Clock In");
-        ClockInButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClockInButtonActionPerformed(evt);
-            }
-        });
 
         LeaveBalanceButton.setText("Leave Balance");
         LeaveBalanceButton.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +89,6 @@ public class Employee_Main extends javax.swing.JFrame {
                             .addComponent(YearlySummaryReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ViewSalaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ClockInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ApplyLeaveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(43, 43, 43)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,30 +106,22 @@ public class Employee_Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(jLabel1))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deptLabel)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deptLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(ClockInButton)
-                        .addGap(18, 18, 18)
                         .addComponent(ApplyLeaveButton)
                         .addGap(18, 18, 18)
                         .addComponent(LeaveBalanceButton)
                         .addGap(18, 18, 18)
-                        .addComponent(YearlySummaryReportButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(ViewSalaryButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(YearlySummaryReportButton)))
+                .addGap(18, 18, 18)
+                .addComponent(ViewSalaryButton)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ClockInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClockInButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ClockInButtonActionPerformed
 
     private void ApplyLeaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyLeaveButtonActionPerformed
     ApplyLeaveFormGUI leave = new ApplyLeaveFormGUI();
@@ -223,7 +206,6 @@ public class Employee_Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ApplyLeaveButton;
-    private javax.swing.JButton ClockInButton;
     private javax.swing.JButton LeaveBalanceButton;
     private javax.swing.JButton ViewSalaryButton;
     private javax.swing.JButton YearlySummaryReportButton;

@@ -44,8 +44,6 @@
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="ApplyLeaveButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="ClockInButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
                   <Component id="RegisterButton" max="32767" attributes="0"/>
                   <Component id="RegisterAdminButton" alignment="1" min="-2" pref="154" max="-2" attributes="0"/>
               </Group>
@@ -55,7 +53,7 @@
                   <Component id="LeaveBalanceButton" alignment="0" max="32767" attributes="0"/>
                   <Component id="YearlySummaryReportButton" max="32767" attributes="0"/>
                   <Component id="PayrollManagementButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="ViewSalaryButton" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
+                  <Component id="ViewSalaryButton" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="43" max="32767" attributes="0"/>
           </Group>
@@ -90,24 +88,18 @@
               </Group>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ClockInButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="LeaveBalanceButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="LeaveManagementButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="RegisterButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="LeaveManagementButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="PayrollManagementButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="RegisterAdminButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="RegisterAdminButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="YearlySummaryReportButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="YearlySummaryReportButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ApplyLeaveButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -123,14 +115,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Admin Main Page"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="ClockInButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Clock In"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClockInButtonActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="LeaveBalanceButton">
       <Properties>
@@ -177,11 +161,6 @@
     <Component class="javax.swing.JLabel" name="deptLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Department"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="View Clock In"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="RegisterButton">

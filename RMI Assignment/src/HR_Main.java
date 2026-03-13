@@ -38,12 +38,10 @@ public class HR_Main extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         deptLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        ClockInButton = new javax.swing.JButton();
         LeaveBalanceButton = new javax.swing.JButton();
         LeaveManagementButton = new javax.swing.JButton();
         PayrollManagementButton = new javax.swing.JButton();
         RegisterButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         ApplyLeave = new javax.swing.JButton();
         view_salary_button = new javax.swing.JButton();
 
@@ -60,8 +58,6 @@ public class HR_Main extends javax.swing.JFrame {
         deptLabel.setText("Department");
 
         jLabel1.setText("HR Main Page");
-
-        ClockInButton.setText("Clock In");
 
         LeaveBalanceButton.setText("Leave Balance");
         LeaveBalanceButton.addActionListener(new java.awt.event.ActionListener() {
@@ -90,8 +86,6 @@ public class HR_Main extends javax.swing.JFrame {
                 RegisterButtonActionPerformed(evt);
             }
         });
-
-        jButton2.setText("View Clock In");
 
         ApplyLeave.setText("Apply Leave");
         ApplyLeave.addActionListener(new java.awt.event.ActionListener() {
@@ -129,8 +123,6 @@ public class HR_Main extends javax.swing.JFrame {
                             .addComponent(RegisterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LeaveManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ClockInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(view_salary_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(129, 129, 129))))
         );
@@ -145,23 +137,19 @@ public class HR_Main extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deptLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ClockInButton)
-                .addGap(14, 14, 14)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
+                .addGap(6, 6, 6)
                 .addComponent(RegisterButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(ApplyLeave)
-                .addGap(9, 9, 9)
+                .addGap(26, 26, 26)
                 .addComponent(LeaveBalanceButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(LeaveManagementButton)
                 .addGap(18, 18, 18)
                 .addComponent(PayrollManagementButton)
                 .addGap(18, 18, 18)
                 .addComponent(view_salary_button)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -263,7 +251,6 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ApplyLeave;
-    private javax.swing.JButton ClockInButton;
     private javax.swing.JButton LeaveBalanceButton;
     private javax.swing.JButton LeaveManagementButton;
     private javax.swing.JButton PayrollManagementButton;
@@ -271,7 +258,6 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
     private javax.swing.JLabel deptLabel;
     private javax.swing.JLabel empIDLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nameLabel;

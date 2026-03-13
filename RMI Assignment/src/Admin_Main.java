@@ -34,7 +34,6 @@ public class Admin_Main extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
-        ClockInButton = new javax.swing.JButton();
         LeaveBalanceButton = new javax.swing.JButton();
         YearlySummaryReportButton = new javax.swing.JButton();
         ViewSalaryButton = new javax.swing.JButton();
@@ -42,7 +41,6 @@ public class Admin_Main extends javax.swing.JFrame {
         empIDLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         deptLabel = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         RegisterButton = new javax.swing.JButton();
         RegisterAdminButton = new javax.swing.JButton();
         LeaveManagementButton = new javax.swing.JButton();
@@ -62,13 +60,6 @@ public class Admin_Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Admin Main Page");
-
-        ClockInButton.setText("Clock In");
-        ClockInButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClockInButtonActionPerformed(evt);
-            }
-        });
 
         LeaveBalanceButton.setText("Leave Balance");
         LeaveBalanceButton.addActionListener(new java.awt.event.ActionListener() {
@@ -103,8 +94,6 @@ public class Admin_Main extends javax.swing.JFrame {
         nameLabel.setText("Name");
 
         deptLabel.setText("Department");
-
-        jButton2.setText("View Clock In");
 
         RegisterButton.setText("Register");
         RegisterButton.addActionListener(new java.awt.event.ActionListener() {
@@ -142,8 +131,6 @@ public class Admin_Main extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(ApplyLeaveButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ClockInButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(RegisterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(RegisterAdminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -152,7 +139,7 @@ public class Admin_Main extends javax.swing.JFrame {
                     .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(YearlySummaryReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PayrollManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ViewSalaryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ViewSalaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 43, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,20 +166,16 @@ public class Admin_Main extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ClockInButton)
-                    .addComponent(LeaveBalanceButton))
+                    .addComponent(LeaveBalanceButton)
+                    .addComponent(RegisterButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LeaveManagementButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(LeaveManagementButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RegisterButton)
-                    .addComponent(PayrollManagementButton))
+                    .addComponent(PayrollManagementButton)
+                    .addComponent(RegisterAdminButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RegisterAdminButton)
-                    .addComponent(YearlySummaryReportButton))
+                .addComponent(YearlySummaryReportButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ApplyLeaveButton)
@@ -202,10 +185,6 @@ public class Admin_Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ClockInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClockInButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ClockInButtonActionPerformed
 
     private void ApplyLeaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyLeaveButtonActionPerformed
     ApplyLeaveFormGUI leave = new ApplyLeaveFormGUI();
@@ -316,7 +295,6 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ApplyLeaveButton;
-    private javax.swing.JButton ClockInButton;
     private javax.swing.JButton LeaveBalanceButton;
     private javax.swing.JButton LeaveManagementButton;
     private javax.swing.JButton PayrollManagementButton;
@@ -326,7 +304,6 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
     private javax.swing.JButton YearlySummaryReportButton;
     private javax.swing.JLabel deptLabel;
     private javax.swing.JLabel empIDLabel;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel nameLabel;
