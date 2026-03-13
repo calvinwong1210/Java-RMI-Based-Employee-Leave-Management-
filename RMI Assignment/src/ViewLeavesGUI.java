@@ -125,7 +125,7 @@ private void loadLeavesImmediately() {
             model.addRow(row);
         }
 
-        int balance = Client.service.getRemainingLeaveBalance(employeeId, selectedyear);
+        int balance = Client.service.getAvailableLeaveForApplication(employeeId, selectedyear);
         jLabel1.setText("Remaining Leave Balance: " + balance + " / 10");
 
     } catch (Exception e) {

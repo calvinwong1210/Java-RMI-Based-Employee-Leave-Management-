@@ -1,5 +1,11 @@
 
+import java.rmi.RemoteException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -18,6 +24,15 @@ public class ApplyLeaveFormGUI extends javax.swing.JFrame {
     public ApplyLeaveFormGUI() {
         initComponents();
     }
+    private boolean isValidDate(String dateStr) {
+    try {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        LocalDate.parse(dateStr, formatter);
+        return true;
+    } catch (Exception e) {
+        return false;
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -149,13 +164,61 @@ public class ApplyLeaveFormGUI extends javax.swing.JFrame {
         String start = jTextField2.getText().trim();
         String end = jTextField3.getText().trim();
         String desc = jTextArea1.getText().trim();
-
-        if (start.isEmpty() || end.isEmpty()) {
+        
+         if (start.isEmpty() || end.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter start and end date.");
             return;
         }
+         
+        if (!isValidDate(start) || !isValidDate(end)) {
+    JOptionPane.showMessageDialog(this,
+        "Invalid date format.\nPlease use d/M/yyyy (Example: 20/1/2026)");
+    return;
+}
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
 
-        jButton1.setEnabled(false);
+        LocalDate starttodate = LocalDate.parse(start, formatter);
+        LocalDate endtodate = LocalDate.parse(end, formatter);
+        LocalDate today = LocalDate.now();
+        if (starttodate.isBefore(today) || endtodate.isBefore(today)) {
+        JOptionPane.showMessageDialog(this,
+                "date cannot be in the past.");
+        jButton1.setEnabled(true);
+        return;
+    }
+        
+            if (starttodate.isAfter(endtodate)) {
+        JOptionPane.showMessageDialog(this,
+                "Start date cannot be after end date.");
+        jButton1.setEnabled(true);
+        return;
+}
+
+        long requestedDays = ChronoUnit.DAYS.between(starttodate, endtodate) + 1;
+
+        int year = starttodate.getYear();
+
+        int available;
+        try {
+            available = Client.service.getAvailableLeaveForApplication(employeeId, year);
+            if (available <= 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Your leave balance for " + year + " is fully used or reserved.");
+            return;
+        }
+
+        if (requestedDays > available) {
+            JOptionPane.showMessageDialog(this,
+                    "Not enough available leave balance.\n" +
+                    "Available: " + available + " day(s)\n" +
+                    "Requested: " + requestedDays + " day(s)");
+            return;
+        }
+        } catch (RemoteException ex) {
+            Logger.getLogger(ApplyLeaveFormGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         new Thread(() -> {
             try {
                 String leaveId = Client.service.applyLeave(
@@ -188,6 +251,7 @@ public class ApplyLeaveFormGUI extends javax.swing.JFrame {
                 });
             }
         }).start();
+        jButton1.setEnabled(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

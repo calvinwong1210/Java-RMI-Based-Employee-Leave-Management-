@@ -68,7 +68,7 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
     }
     
     @Override
-    public String applyLeave(String employeeId, String description, String startDate, String endDate)
+    public synchronized String applyLeave(String employeeId, String description, String startDate, String endDate)
             throws RemoteException {
         // Basic validation (server-side)
         if (employeeId == null || employeeId.trim().isEmpty()) {
@@ -156,45 +156,40 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
     }
     
     @Override
-    public int getRemainingLeaveBalance(String employeeId, int year) throws RemoteException {
-
-    int usedDays = 0;
-
+    public int getAvailableLeaveForApplication(String empId, int year) throws RemoteException {
+    int reservedDays = 0;
     try (BufferedReader br = new BufferedReader(new FileReader("leaves.txt"))) {
-
         String line;
 
         while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
 
             String[] parts = line.split(";");
-
-            String empId = parts[1].trim();
-            String startDateStr = parts[3].trim();
-            String endDateStr = parts[4].trim();
+            if (parts.length < 6) continue;
             String status = parts[5].trim();
 
-            if (!empId.equals(employeeId)) continue;
+            if (!empId.equals(parts[1].trim())) continue;
+            LocalDate startDate = LocalDate.parse(parts[3].trim(), formatter);
+            LocalDate endDate = LocalDate.parse(parts[4].trim(), formatter);
 
-            if (!status.equalsIgnoreCase("Approved")) continue;
+            if (startDate.getYear() != year) continue;
 
-            LocalDate start = LocalDate.parse(startDateStr, formatter);
-            LocalDate end = LocalDate.parse(endDateStr, formatter);
+            if (status.equalsIgnoreCase("Approved") ||
+                status.equalsIgnoreCase("Waiting")) {
 
-            if (start.getYear() == year) {
-
-                long days = ChronoUnit.DAYS.between(start, end) + 1;
-                usedDays += days;
-
+                long days = java.time.temporal.ChronoUnit.DAYS.between(startDate, endDate) + 1;
+                reservedDays += (int) days;
             }
         }
-
+    } catch (IOException e) {
+        throw new RemoteException("File read error: " + e.getMessage(), e);
     } catch (Exception e) {
-        e.printStackTrace();
+        throw new RemoteException("Error calculating available leave: " + e.getMessage(), e);
     }
 
-    int remaining = 10 - usedDays;
-
-    return Math.max(remaining, 0);
+    int available = 10 - reservedDays;
+    return Math.max(available, 0);
 }
     @Override
     public List<String[]> getLeavesByEmployee(String empId,int year) throws RemoteException {

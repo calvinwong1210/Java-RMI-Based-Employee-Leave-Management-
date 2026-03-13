@@ -11,8 +11,7 @@ public interface Service extends Remote {
                           String password,
                           String phone, String familyName,
                           String relationship, String familyPhone) throws RemoteException;
-    int getRemainingLeaveBalance(String employeeId, int year) throws RemoteException;
-    
+    int getAvailableLeaveForApplication(String empId, int year) throws RemoteException;
     //PayrollManagement_Add
     void addPayroll(String empID, double basic, double allowance, double ot, double deduction, double total) 
          throws RemoteException;
