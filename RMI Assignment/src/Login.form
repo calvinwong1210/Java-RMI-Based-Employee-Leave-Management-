@@ -46,7 +46,7 @@
                       <Component id="LoginButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="134" max="32767" attributes="0"/>
+              <EmptySpace pref="116" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,7 +80,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="IC:"/>
+        <Property name="text" type="java.lang.String" value="Employee ID:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
