@@ -376,6 +376,9 @@ public class Register extends javax.swing.JFrame {
     ICTextField.setText("");
     EmailTextField.setText("");
     PasswordTextField.setText("");
+    Phone_NumberTextField.setText("");
+    Family_NameTextField.setText("");
+    Family_Phone_NumberTextField.setText("");
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
     private void ICTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ICTextFieldActionPerformed

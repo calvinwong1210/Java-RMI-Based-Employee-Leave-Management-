@@ -12,6 +12,7 @@ public interface Service extends Remote {
                           String password,
                           String phone, String familyName,
                           String relationship, String familyPhone) throws RemoteException;
+    String[] login(String employeeID, String password) throws RemoteException;
     
     int getAvailableLeaveForApplication(String empId, int year) throws RemoteException;
     

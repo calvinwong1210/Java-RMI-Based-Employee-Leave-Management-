@@ -60,7 +60,43 @@ public class ServiceImplement extends UnicastRemoteObject implements Service {
 
         return String.format("E%04d", count + 1);  // E0001
     }
+    
+@Override
+public String[] login(String employeeID, String password) throws RemoteException {
+    String FILE_PATH = "employees.txt";
 
+    try (Scanner sc = new Scanner(new File(FILE_PATH))) {
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine().trim();
+            if (line.isEmpty()) continue;
+
+            String[] parts = line.split(";");
+            if (parts.length < 9) continue;
+
+            String existingIC = parts[0].trim();
+            String existingPassword = parts[7].trim();
+            String department = parts[5].trim();
+
+            if (employeeID.equals(existingIC)) {
+                if (password.equals(existingPassword)) {
+                    return new String[] {
+                        parts[0].trim(), // empID
+                        parts[1].trim(), // name
+                        department,      // department
+                        "SUCCESS"
+                    };
+                } else {
+                    return new String[] { "", "", "", "Wrong Password" };
+                }
+            }
+        }
+    } catch (Exception e) {
+        throw new RemoteException("Error reading employees file", e);
+    }
+
+    return new String[] { "", "", "", "EmployeeID Not Found" };
+}
+    
     private String getTodayDate() {
         java.text.SimpleDateFormat sdf =
                 new java.text.SimpleDateFormat("yyyy-MM-dd");

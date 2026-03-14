@@ -1,4 +1,5 @@
 
+import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 
 /*
@@ -115,71 +116,45 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_PasswordTextFieldActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        String empID = "";
-        String name = "";
-        String department = "";
-
-        String ic = ICTextField.getText().trim();
+        String EmployeeID = ICTextField.getText().trim();
         String password = PasswordTextField.getText().trim();
 
-        if (ic.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "IC and Password cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+        if (EmployeeID.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Employee and Password cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+    try {
+        String[] result = Client.service.login(EmployeeID, password);
 
-        String FILE_PATH = "employees.txt";
-        boolean icFound = false;
-        boolean loginSuccess = false;
+        String empID = result[0];
+        String name = result[1];
+        String department = result[2];
+        String status = result[3];
 
-        try (java.util.Scanner sc = new java.util.Scanner(new java.io.File(FILE_PATH))) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine().trim();
-                if (line.isEmpty()) continue;
-                String[] parts = line.split(";");
-                if (parts.length < 9) continue;
+        if ("SUCCESS".equals(status)) {
+            Session.setUser(empID, name, department);
 
-                String existingIC = parts[2].trim();
-                String existingPassword = parts[7].trim(); // 假设密码在第7列（索引6）
-                department = parts[5].trim();              // 假设部门在第5列（索引4）
-
-                if (ic.equals(existingIC)) {
-                    icFound = true; // 找到 IC
-                    if (password.equals(existingPassword)) {
-                        // 登录成功
-                        empID = parts[0].trim();   // EmployeeID
-                        name = parts[1].trim();    // Name
-                        department = parts[5].trim();
-                        loginSuccess = true;
-                    }
-                    break; // 找到 IC 就可以停止循环
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error reading employees file.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (loginSuccess) {
-            // 登录成功，打开对应界面
-             Session.setUser(empID, name, department);
-             if (department.equalsIgnoreCase("Admin")) {
+            if (department.equalsIgnoreCase("Admin")) {
                 new Admin_Main().setVisible(true);
             } else if (department.equalsIgnoreCase("HR")) {
                 new HR_Main().setVisible(true);
             } else {
                 new Employee_Main().setVisible(true);
             }
+
             this.dispose();
-        } else {
-            // 登录失败，提示 IC 或密码错误
-            if (!icFound) {
-                JOptionPane.showMessageDialog(this, "IC does not exist!", "Login Failed", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Incorrect password!", "Login Failed", JOptionPane.ERROR_MESSAGE);
-            }
+
+        } else if ("EmployeeID Not Found".equals(status)) {
+            JOptionPane.showMessageDialog(this, "EmployeeID does not exist!", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        } else if ("Wrong Password".equals(status)) {
+            JOptionPane.showMessageDialog(this, "Incorrect password!", "Login Failed", JOptionPane.ERROR_MESSAGE);
         }
 
+    } catch (RemoteException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Login service error.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+  
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     /**

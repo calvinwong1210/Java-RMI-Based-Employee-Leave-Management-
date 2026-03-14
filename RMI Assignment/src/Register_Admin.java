@@ -327,6 +327,9 @@ public class Register_Admin extends javax.swing.JFrame {
         ICTextField.setText("");
         EmailTextField.setText("");
         PasswordTextField.setText("");
+        Phone_NumberTextField.setText("");
+        Family_NameTextField.setText("");
+        Family_Phone_NumberTextField.setText("");
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
     private void Phone_NumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Phone_NumberTextFieldActionPerformed
