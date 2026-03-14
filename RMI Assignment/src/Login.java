@@ -40,7 +40,7 @@ public class Login extends javax.swing.JFrame {
 
         LoginLabel.setText("Login");
 
-        jLabel1.setText("IC:");
+        jLabel1.setText("Employee ID:");
 
         jLabel2.setText("Password:");
 
@@ -84,7 +84,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(154, 154, 154)
                         .addComponent(LoginButton)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
