@@ -32,9 +32,8 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="YearlySummaryReportButton" alignment="0" max="32767" attributes="0"/>
                           <Component id="ViewSalaryButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="LeaveBalanceButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LeaveBalanceButton" alignment="0" pref="169" max="32767" attributes="0"/>
                           <Component id="ApplyLeaveButton" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
@@ -66,13 +65,11 @@
                       <Component id="ApplyLeaveButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="LeaveBalanceButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="YearlySummaryReportButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="ViewSalaryButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace pref="101" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,14 +101,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LeaveBalanceButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="YearlySummaryReportButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Yearly Summary Report"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="YearlySummaryReportButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ViewSalaryButton">

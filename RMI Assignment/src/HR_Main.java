@@ -44,6 +44,7 @@ public class HR_Main extends javax.swing.JFrame {
         RegisterButton = new javax.swing.JButton();
         ApplyLeave = new javax.swing.JButton();
         view_salary_button = new javax.swing.JButton();
+        YearlySummaryReport = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -101,12 +102,19 @@ public class HR_Main extends javax.swing.JFrame {
             }
         });
 
+        YearlySummaryReport.setText("Yearly Summary Report");
+        YearlySummaryReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YearlySummaryReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
+                .addContainerGap(111, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -123,7 +131,8 @@ public class HR_Main extends javax.swing.JFrame {
                             .addComponent(RegisterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LeaveManagementButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LeaveBalanceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(view_salary_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(view_salary_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(YearlySummaryReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(129, 129, 129))))
         );
         layout.setVerticalGroup(
@@ -149,7 +158,9 @@ public class HR_Main extends javax.swing.JFrame {
                 .addComponent(PayrollManagementButton)
                 .addGap(18, 18, 18)
                 .addComponent(view_salary_button)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(YearlySummaryReport)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,6 +225,13 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
                          this.dispose(); 
     }//GEN-LAST:event_LeaveManagementButtonActionPerformed
 
+    private void YearlySummaryReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YearlySummaryReportActionPerformed
+        YearlySummaryReportGUI report = new YearlySummaryReportGUI(Session.getEmployeeId());
+        report.setVisible(true);
+        report.setLocationRelativeTo(null);
+        this.dispose(); 
+    }//GEN-LAST:event_YearlySummaryReportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -255,6 +273,7 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
     private javax.swing.JButton LeaveManagementButton;
     private javax.swing.JButton PayrollManagementButton;
     private javax.swing.JButton RegisterButton;
+    private javax.swing.JButton YearlySummaryReport;
     private javax.swing.JLabel deptLabel;
     private javax.swing.JLabel empIDLabel;
     private javax.swing.JButton jButton1;
