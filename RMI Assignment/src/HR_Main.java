@@ -97,7 +97,7 @@ public class HR_Main extends javax.swing.JFrame {
             }
         });
 
-        view_salary_button.setText("View Salary");
+        view_salary_button.setText("View My Salary");
         view_salary_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 view_salary_buttonActionPerformed(evt);
