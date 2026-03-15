@@ -46,6 +46,7 @@ public class HR_Main extends javax.swing.JFrame {
         view_salary_button = new javax.swing.JButton();
         YearlySummaryReport = new javax.swing.JButton();
         logout_button = new javax.swing.JButton();
+        EditProfile = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -117,6 +118,13 @@ public class HR_Main extends javax.swing.JFrame {
             }
         });
 
+        EditProfile.setText("Edit Profile");
+        EditProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditProfileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +134,9 @@ public class HR_Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(EditProfile))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,7 +176,9 @@ public class HR_Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deptLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(deptLabel)
+                            .addComponent(EditProfile))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RegisterButton)
@@ -262,6 +274,11 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
         this.dispose();
     }//GEN-LAST:event_logout_buttonActionPerformed
 
+    private void EditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProfileActionPerformed
+       new EditProfile().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_EditProfileActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,6 +316,7 @@ String input = JOptionPane.showInputDialog(this, "Enter year (e.g. 2026):");
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ApplyLeave;
+    private javax.swing.JButton EditProfile;
     private javax.swing.JButton LeaveBalanceButton;
     private javax.swing.JButton LeaveManagementButton;
     private javax.swing.JButton PayrollManagementButton;

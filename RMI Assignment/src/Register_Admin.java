@@ -61,6 +61,7 @@ public class Register_Admin extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         EmailTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        Cancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,6 +163,13 @@ public class Register_Admin extends javax.swing.JFrame {
 
         jLabel10.setText("Family Name:");
 
+        Cancel.setText("Cancel");
+        Cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,8 +181,10 @@ public class Register_Admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
+                        .addGap(134, 134, 134)
                         .addComponent(SubmitButton)
+                        .addGap(89, 89, 89)
+                        .addComponent(Cancel)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(32, 32, 32)
@@ -267,7 +277,9 @@ public class Register_Admin extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(Family_Phone_NumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SubmitButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SubmitButton)
+                    .addComponent(Cancel))
                 .addContainerGap())
         );
 
@@ -309,6 +321,12 @@ public class Register_Admin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Name and Password are required.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        if (!phone.matches("\\d{10,11}") || !familyPhone.matches("\\d{10,11}")) {
+        JOptionPane.showMessageDialog(this,
+            "Phone number must be 10–11 digits.");
+        return;
+    }
 
         // 5. 保存到服务器
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
@@ -330,6 +348,16 @@ public class Register_Admin extends javax.swing.JFrame {
         Phone_NumberTextField.setText("");
         Family_NameTextField.setText("");
         Family_Phone_NumberTextField.setText("");
+        String department = Session.getDepartment();
+
+    if (department.equalsIgnoreCase("Admin")) {
+        new Admin_Main().setVisible(true);
+    } else if (department.equalsIgnoreCase("HR")) {
+        new HR_Main().setVisible(true);
+    } else {
+        new Employee_Main().setVisible(true);
+    }
+    this.dispose();
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
     private void Phone_NumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Phone_NumberTextFieldActionPerformed
@@ -368,6 +396,19 @@ public class Register_Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailTextFieldActionPerformed
 
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
+    String department = Session.getDepartment();
+
+    if (department.equalsIgnoreCase("Admin")) {
+        new Admin_Main().setVisible(true);
+    } else if (department.equalsIgnoreCase("HR")) {
+        new HR_Main().setVisible(true);
+    } else {
+        new Employee_Main().setVisible(true);
+    }    
+     this.dispose();    // TODO add your handling code here:
+    }//GEN-LAST:event_CancelActionPerformed
+
     private boolean isDuplicate(String ic, String email) {
         String FILE_PATH = "employees.txt";
         java.io.File file = new java.io.File(FILE_PATH);
@@ -380,7 +421,7 @@ public class Register_Admin extends javax.swing.JFrame {
                 String[] parts = line.split(";"); // 使用分号分隔
                 if (parts.length < 7) continue;
 
-                String existingIC = parts[1].trim();
+                String existingIC = parts[2].trim();
                 String existingEmail = parts[6].trim();
 
                 // 同时检查 IC 和 Email
@@ -432,6 +473,7 @@ public class Register_Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancel;
     private javax.swing.JComboBox<String> DepartmentComboBox;
     private javax.swing.JSpinner DoBSpinner;
     private javax.swing.JTextField EmailTextField;

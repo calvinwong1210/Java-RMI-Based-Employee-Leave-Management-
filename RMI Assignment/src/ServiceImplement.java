@@ -96,6 +96,63 @@ public String[] login(String employeeID, String password) throws RemoteException
 
     return new String[] { "", "", "", "EmployeeID Not Found" };
 }
+
+@Override
+public synchronized boolean updateEmployeeProfile(String empId, String name, String phone,
+                                                  String address, String FamilyName,String FamilyRelationShip,String FamilyPhone, String password)
+        throws RemoteException {
+
+    String FILE_PATH = "employees.txt";
+    List<String> updatedLines = new ArrayList<>();
+    boolean updated = false;
+
+    try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
+        String line;
+
+        while ((line = br.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+
+            String[] parts = line.split(";");
+            if (parts.length < 8) {
+                updatedLines.add(line);
+                continue;
+            }
+
+            String fileEmpId = parts[0].trim();
+
+            if (empId.equals(fileEmpId)) {
+                // Keep non-editable fields, replace editable ones
+                parts[1] = name;      // Name
+                parts[8] = phone;     // Phone
+                parts[6] = address;   // Address
+                parts[9] = FamilyName;
+                parts[10] = FamilyRelationShip;// Family details
+                parts[11] = FamilyPhone;
+                parts[7] = password;  // Password
+
+                String updatedLine = String.join(";", parts);
+                updatedLines.add(updatedLine);
+                updated = true;
+            } else {
+                updatedLines.add(line);
+            }
+        }
+    } catch (IOException e) {
+        throw new RemoteException("Error reading employee file: " + e.getMessage(), e);
+    }
+
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_PATH))) {
+        for (String updatedLine : updatedLines) {
+            bw.write(updatedLine);
+            bw.newLine();
+        }
+    } catch (IOException e) {
+        throw new RemoteException("Error writing employee file: " + e.getMessage(), e);
+    }
+
+    return updated;
+}
     
     private String getTodayDate() {
         java.text.SimpleDateFormat sdf =

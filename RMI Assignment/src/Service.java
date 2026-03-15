@@ -13,6 +13,8 @@ public interface Service extends Remote {
                           String phone, String familyName,
                           String relationship, String familyPhone) throws RemoteException;
     String[] login(String employeeID, String password) throws RemoteException;
+    boolean updateEmployeeProfile(String empId, String name, String phone,
+                              String address, String familyName,String FamilyRelation,String FamilyPhone, String password) throws RemoteException;
     
     int getAvailableLeaveForApplication(String empId, int year) throws RemoteException;
     
