@@ -4,16 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/PayrollManagement_Add.java</file>
-            <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/LeaveManagementGUI.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/HR_Main.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/Session.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/ViewLeavesGUI.java</file>
-            <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/ViewSalary.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/Service.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/Server.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/Employee_Main.java</file>
-            <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/YearlySummaryReportGUI.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/Client.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/Register.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/Login.java</file>
@@ -21,8 +17,6 @@
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/Admin_Main.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/ServiceImplement.java</file>
             <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/ApplyLeaveFormGUI.java</file>
-            <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/LeaveDetailForm.java</file>
-            <file>file:/C:/Users/Owner/Downloads/Documents/degree%20final%20year/sem%203/DS/Git%20RMI%20Assignment/dcoms_assignment/RMI%20Assignment/src/PayrollManagement.java</file>
         </group>
     </open-files>
 </project-private>
