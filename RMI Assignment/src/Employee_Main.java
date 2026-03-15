@@ -54,7 +54,7 @@ public class Employee_Main extends javax.swing.JFrame {
             }
         });
 
-        ViewSalaryButton.setText("View Salary");
+        ViewSalaryButton.setText("View My Salary");
         ViewSalaryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ViewSalaryButtonActionPerformed(evt);
