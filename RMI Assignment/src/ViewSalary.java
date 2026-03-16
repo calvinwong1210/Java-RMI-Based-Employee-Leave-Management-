@@ -87,7 +87,7 @@ public class ViewSalary extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("View Salary");
+        jLabel1.setText("View My Salary");
 
         view_salary_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

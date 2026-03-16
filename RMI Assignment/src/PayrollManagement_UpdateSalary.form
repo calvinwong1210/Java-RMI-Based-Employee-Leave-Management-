@@ -132,7 +132,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Update Salary (Status)"/>
+        <Property name="text" type="java.lang.String" value="Update Payroll Status"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

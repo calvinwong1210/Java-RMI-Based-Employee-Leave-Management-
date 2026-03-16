@@ -23,19 +23,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="back_button" alignment="0" max="32767" attributes="0"/>
-                      <Component id="update_salary" alignment="1" max="32767" attributes="0"/>
-                      <Component id="add_payroll" alignment="1" max="32767" attributes="0"/>
-                      <Component id="edit_payroll" alignment="1" max="32767" attributes="0"/>
-                      <Component id="view_salary" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="back_button" alignment="0" max="32767" attributes="0"/>
+                          <Component id="update_salary" alignment="1" max="32767" attributes="0"/>
+                          <Component id="add_payroll" alignment="1" max="32767" attributes="0"/>
+                          <Component id="edit_payroll" alignment="1" max="32767" attributes="0"/>
+                          <Component id="view_salary" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="146" max="32767" attributes="0"/>
+              <EmptySpace pref="133" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,7 +49,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="add_payroll" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="edit_payroll" min="-2" max="-2" attributes="0"/>
@@ -54,7 +59,7 @@
               <Component id="view_salary" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="back_button" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,7 +83,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="update_salary">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Update Salary"/>
+        <Property name="text" type="java.lang.String" value="Update Payroll Status"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="update_salaryActionPerformed"/>
