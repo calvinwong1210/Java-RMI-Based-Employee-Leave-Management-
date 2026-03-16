@@ -83,7 +83,7 @@ public class PayrollManagement_UpdateSalary extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Update Salary (Status)");
+        jLabel1.setText("Update Payroll Status");
 
         jLabel3.setText("Employee ID :");
 
